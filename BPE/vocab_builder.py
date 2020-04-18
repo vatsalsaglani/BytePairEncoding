@@ -9,7 +9,7 @@ class BuildBPEVocab():
     Byte Pair Encoding for any text-oriented-corpus can be done using this.
     """
 
-    def __init__(self, corpus, iters):
+    def __init__(self, corpus, iters, do_lower = False):
         """
         args -
         corpus: the text corpus.
@@ -17,9 +17,10 @@ class BuildBPEVocab():
         """
         self.corpus = corpus
         self.iters = iters
-        self.clean_d = lambda x: ''.join(re.findall("[a-zA-Z!@#,']", x))
+        self.clean_d = lambda x: ''.join(re.findall("[a-zA-Z0-9!@#$%&*?,':]", x))
         self.vocab = self.build_corpus_vocab()
         self.vocab = self.build_vocab()
+        self.do_lower = do_lower
 
     #         self.sorted_tokens = []
 
@@ -29,9 +30,9 @@ class BuildBPEVocab():
         """
         string = " ".join(re.split("[.,;:]", string))
         string = " ".join(string.split())
-        if re.search("[A-Z][^A-Z]*", string):
-            string = " ".join(re.findall('[^a-z]+[a-z]*', string))
-        string = string.lower()
+        if self.do_lower:
+            string = string.lower()
+            
         string = " ".join(string.split())
         return string
 

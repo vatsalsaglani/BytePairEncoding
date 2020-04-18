@@ -10,12 +10,13 @@ class BPETokenize():
     takes list of texts and tokenize those.
     """
 
-    def __init__(self, strtoint: dict, inttostr: dict, vocab_tokens: dict):
+    def __init__(self, strtoint: dict, inttostr: dict, vocab_tokens: dict, do_lower = False):
 
         self.strtoint = strtoint
+        self.do_lower = do_lower
         self.inttostr = inttostr
         self.vocab_tokens = vocab_tokens
-        self.clean_d = lambda x: ''.join(re.findall("[a-zA-Z!@#,']", x))
+        self.clean_d = lambda x: ''.join(re.findall("[a-zA-Z0-9!@#$%&*?,':]", x))
 
     def split_string(self, string):
         """
@@ -23,9 +24,10 @@ class BPETokenize():
         """
         string = " ".join(re.split("[.,;:]", string))
         string = " ".join(string.split())
-        if re.search("[A-Z][^A-Z]*", string):
-            string = " ".join(re.findall('[^a-z]+[a-z]*', string))
-        string = string.lower()
+        if self.do_lower:
+
+            string = string.lower()
+            
         string = " ".join(string.split())
         return string
 
