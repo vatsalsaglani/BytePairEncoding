@@ -20,7 +20,7 @@ class BuildBPEVocab():
         self.clean_d = lambda x: ''.join(re.findall("[a-zA-Z0-9!@#$%&*?,':]", x))
         self.vocab = self.build_corpus_vocab()
         self.vocab = self.build_vocab()
-        self.do_lower = do_lower
+        # self.do_lower = do_lower
 
     #         self.sorted_tokens = []
 
