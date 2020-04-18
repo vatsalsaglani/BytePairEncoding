@@ -10,7 +10,7 @@ class BPETokenize():
     takes list of texts and tokenize those.
     """
 
-    def __init__(self, strtoint: dict, inttostr: dict, vocab_tokens: dict, do_lower = False):
+    def __init__(self, strtoint: dict, inttostr: dict, vocab_tokens: dict):
 
         self.strtoint = strtoint
         self.do_lower = do_lower
@@ -24,9 +24,9 @@ class BPETokenize():
         """
         string = " ".join(re.split("[.,;:]", string))
         string = " ".join(string.split())
-        if self.do_lower:
+        # if self.do_lower:
 
-            string = string.lower()
+        #     string = string.lower()
             
         string = " ".join(string.split())
         return string

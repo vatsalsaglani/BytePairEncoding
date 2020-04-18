@@ -9,7 +9,7 @@ class BuildBPEVocab():
     Byte Pair Encoding for any text-oriented-corpus can be done using this.
     """
 
-    def __init__(self, corpus, iters, do_lower = False):
+    def __init__(self, corpus, iters):
         """
         args -
         corpus: the text corpus.
@@ -30,8 +30,8 @@ class BuildBPEVocab():
         """
         string = " ".join(re.split("[.,;:]", string))
         string = " ".join(string.split())
-        if self.do_lower:
-            string = string.lower()
+        # if self.do_lower:
+        #     string = string.lower()
             
         string = " ".join(string.split())
         return string
