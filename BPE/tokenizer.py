@@ -13,7 +13,6 @@ class BPETokenize():
     def __init__(self, strtoint: dict, inttostr: dict, vocab_tokens: dict):
 
         self.strtoint = strtoint
-        self.do_lower = do_lower
         self.inttostr = inttostr
         self.vocab_tokens = vocab_tokens
         self.clean_d = lambda x: ''.join(re.findall("[a-zA-Z0-9!@#$%&*?,':]", x))
