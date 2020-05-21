@@ -97,8 +97,12 @@ class BPETokenize():
         input_sent = self.sub_space(sentence)
         # input_sent = sentence
         # sentence = self.cleaned_text(sentence)
-        sent_splt = [s + "</w>" for s in input_sent.split()]
-        print(f'Sen: {sent_splt}')
+        # sent_splt = [s + "</w>" for s in input_sent.split()]
+        sent_splt = [s if s in ['</w>', '</u>'] else s + "</w>" for s in input_sent.split()]
+        # print(f'Sen: {sent_splt}')
+        str_toks.append(self.tokenize_string('<sos></w>', sorted_tokens))
+        int_toks.append(self.strtoint['<sos></w>'])
+
         for token in sent_splt:
             str_ = self.tokenize_string(token, sorted_tokens)
             str_toks.append(str_)
@@ -109,6 +113,9 @@ class BPETokenize():
                         int_toks.append(self.strtoint[t])
                 else:
                     int_toks.append(self.strtoint[tok])
+
+        str_toks.append(self.tokenize_string('<eos></w>', sorted_tokens))
+        int_toks.append(self.strtoint['<eos></w>'])
         return input_sent, str_toks, int_toks
 
     def tokenize_text_corpus(self, text_corpus: list, sorted_tokens: list):

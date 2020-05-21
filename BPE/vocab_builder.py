@@ -161,6 +161,9 @@ class BuildBPEVocab():
         lst_token_freq = list(token_freqs.keys())
         lst_token_freq.append("</u>")
         lst_token_freq.append('</space/></w>')
+        # add start of string and end of string
+        lst_token_freq.append('<sos></w>')
+        lst_token_freq.append('<eos></w>')
         strtoint, inttostr = {
                                  w: i+1
                                  for i, w in enumerate(lst_token_freq)
